@@ -33,11 +33,11 @@ body {
     box-sizing: border-box;
     background-color: rgba(240, 248, 255, 0);
     transition: 0.3s;
-    border: 0px, solid, pink;
+    border: 0px
 }
 
 .closeButton:hover{
     box-sizing: border-box;
     background-color: rgb(255, 255, 255);
-    border: 1px, solid, pink;
+    border: 0px
 }
