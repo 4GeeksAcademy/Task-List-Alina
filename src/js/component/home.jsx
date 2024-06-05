@@ -5,20 +5,12 @@ import { useState, useEffect } from "react";
 const Home = () => {	
 	
 	const [list, setList] = useState(JSON.parse(localStorage.getItem("ToDoList")))
-	const [finalMessage, setFinalMessage] = useState(`${list.length} items left`)
 
 	useEffect(()=>{
+
 		localStorage.setItem("ToDoList", JSON.stringify(list))
 
-		setFinalMessage(()=>{
-			if (list.length != 0){
-				return (`${list.length} items left`)
-			} else {
-				return ("No tasks, add a task")
-			}
-		})
-
-		}, [list])
+	}, [list])
 	
 	function enterPressed (event) {
 		if (event.keyCode === 13 && event.target.value !== ""){
@@ -35,21 +27,14 @@ const Home = () => {
 	function removeTask (index) {
 		if (index <= -1) return // only splice array when item is found
 
-		const listLength = list.length - 1
-
 		setList((prevArray)=> {
-			prevArray.splice(id, 1)
+			prevArray.splice(index, 1)
 			return [...prevArray]
 		})
-
-		setFinalMessage(()=>{
-			if (listLength != 0){
-				return (`${listLength} items left`)
-			} else {
-				return ("No tasks, add a task")
-			}
-		})
 	}
+	
+	const finalMessage = 
+	(list.length > 0) ? `${list.length} items left` : "No tasks, add a task"
 	
 	return (
 		<div className="container d-flex justify-content-center align-items-center flex-column p-5 rounded-5">
