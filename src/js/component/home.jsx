@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 
 //create your first component
 const Home = () => {	
-	
-	const [list, setList] = useState(JSON.parse(localStorage.getItem("ToDoList")))
+	const [list, setList] = useState(()=>{
+		const savedList = localStorage.getItem("ToDoList");
+		return savedList ? JSON.parse(savedList) : [];
+	})
 
 	useEffect(()=>{
 
